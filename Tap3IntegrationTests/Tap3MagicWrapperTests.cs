@@ -5,8 +5,8 @@ namespace Tap3IntegrationTests
 {
     public class Tap3MagicWrapperTests
     {
-        static string inPath = @"E:/repos/tap3magic/build/debug-readers/tap3-sample-DataInterChange-3_11.ber";
-        static string outPath = @"E:/repos/tap3magic/build/debug-readers/resultssss.xer";
+        static string inPath = @"E:/repos/tap3magic/build/debug-readers/hi3gtest.ber";
+        static string outPath = @"E:/repos/tap3magic/build/debug-readers/hi3gtest.xer";
         static ASN1Encoding inEncoding = ASN1Encoding.BER;
         static ASN1Encoding outEncoding = ASN1Encoding.XER;
 
@@ -14,7 +14,15 @@ namespace Tap3IntegrationTests
         [Fact]
         public void TestingFile2File()
         {
-            int res = Tap3MagicWrapper.DecodeFileToFile(inEncoding, outEncoding, inPath, outPath);
+            int res = -1;
+            try
+            {
+                res = Tap3MagicWrapper.DecodeFileToFile(inEncoding, outEncoding, inPath, outPath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Assert.True(res > 0);
         }
         [Fact]
