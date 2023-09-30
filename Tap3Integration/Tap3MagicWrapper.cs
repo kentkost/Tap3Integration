@@ -1,10 +1,8 @@
-﻿using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
 namespace Tap3Integration;
 
-internal class Tap3MagicWrapper
+public class Tap3MagicWrapper
 {
     public enum ASN1Encoding
     {
@@ -24,7 +22,7 @@ internal class Tap3MagicWrapper
     /// <param name="outputEncoding">The encoding of the output file</param>
     /// <param name="inFilePath">The file path for the input file</param>
     /// <param name="outFilePath">The file path for the output file</param>
-    /// <returns>0 on success</returns>
+    /// <returns>-1 on fail and number of bytes encoded otherwise</returns>
     [DllImport("TestDll_d.dll", EntryPoint = "decode_tap0311_datainterchange_file2file", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     private static extern int decode_tap0311_datainterchange_file2file(int inputEncoding, int outputEncoding, string inFilePath, string outFilePath);
 
@@ -36,7 +34,7 @@ internal class Tap3MagicWrapper
     /// <param name="inputBuffer">The input buffer</param>
     /// <param name="inBufferSize">The size of the input buffer</param>
     /// <param name="outFilePath">The file path for the output file</param>
-    /// <returns>0 on success</returns>
+    /// <returns>-1 on fail and number of bytes encoded otherwise</returns>
     [DllImport("TestDll_d.dll", EntryPoint = "decode_tap0311_datainterchange_buffer2file", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     private static extern int decode_tap0311_datainterchange_buffer2file(int inputEncoding, int outputEncoding, byte[] inputBuffer, ulong inBufferSize, string outFilePath);
 
@@ -72,7 +70,7 @@ internal class Tap3MagicWrapper
     /// <param name="outputEncoding">The encoding of the output file</param>
     /// <param name="inFilePath">The file path for the input file</param>
     /// <param name="outFilePath">The file path for the output file</param>
-    /// <returns>0 on success</returns>
+    /// <returns>-1 on fail and number of bytes encoded otherwise</returns>
     public static int DecodeFileToFile(ASN1Encoding inputEncoding, ASN1Encoding outputEncoding, string inFilePath, string outFilePath)
     {
         int inEnc = (int)inputEncoding;
@@ -88,7 +86,7 @@ internal class Tap3MagicWrapper
     /// <param name="inputBuffer">The input buffer</param>
     /// <param name="inputBufferSize">The size of the input buffer</param>
     /// <param name="outFilePath">The file path for the output file</param>
-    /// <returns>0 on success</returns>
+    /// <returns>-1 on fail and number of bytes encoded otherwise</returns>
     public static int DecodeBufferToFile(ASN1Encoding inputEncoding, ASN1Encoding outputEncoding, byte[] inputBuffer, ulong inputBufferSize, string outFilePath)
     {
         int inEnc = (int)inputEncoding;
