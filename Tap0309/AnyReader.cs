@@ -35,11 +35,12 @@ public class AnyReader
                 var batchControlInfo = transferBatch.batchControlInfo;
                 var props2 = batchControlInfo.GetAllProperties();
                 var val = batchControlInfo.GetProperty();
-                if (val is Node)
-                {
-                    var newVal = (Node)val;
-                    var s = newVal.GetProperty();
-                }
+                batchControlInfo.InitializeNodes();
+                //if (val is Node)
+                //{
+                //    var newVal = (Node)val;
+                //    var s = newVal.GetProperty();
+                //}
             }
         }
     }
