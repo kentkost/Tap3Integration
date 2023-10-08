@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Xml;
 using System.Xml.Serialization;
+using Tap0309;
 
 namespace Tap3Integration;
 
@@ -14,10 +15,8 @@ class Program
 
     static void Main(string[] args)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DataInterChangeType));
-        FileStream fileStream = new FileStream(inFile,FileMode.Open,FileAccess.Read);
-
-        var kek = serializer.Deserialize(fileStream);
-
+        //Tap0309Reader reader = new Tap0309Reader();
+        AnyReader reader = new AnyReader();
+        reader.ReadStructure();
     }
 }

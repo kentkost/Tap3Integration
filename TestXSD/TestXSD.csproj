@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Tap0309\Tap0309.csproj" />
-  </ItemGroup>
-
 </Project>
