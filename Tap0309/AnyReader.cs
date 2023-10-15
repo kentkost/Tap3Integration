@@ -1,53 +1,39 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Tap0309;
 
 public class AnyReader
 {
     private static string inFile = @"E:/repos/Tap3Integration/SampleData/tdcsample.xer";
-
-    public Node root = null;
-
+    private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
+    private static Node root;
+    public readonly string version = "3.09";
 
     public AnyReader()
     {
+
     }
 
     public void ReadStructure()
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DataInterChangeType));
-        FileStream fileStream = new FileStream(inFile, FileMode.Open, FileAccess.Read);
-        
-        var first = serializer.Deserialize(fileStream);
+        // Read the structure into nodes.
+        FileStream fs = new FileStream(inFile, FileMode.Open, FileAccess.Read);
+        var content = XElement.Load(fs);
 
-        if(first is Node)
-        {
-            root = (Node)first;
-        }
-
-        if (root is DataInterChangeType)
-        {
-            var datainterchange = (DataInterChangeType)root;
-            var props = datainterchange.GetAllProperties();
-            if (datainterchange.Item is TransferBatch)
-            {
-                var transferBatch = (TransferBatch)datainterchange.Item;
-                var batchControlInfo = transferBatch.batchControlInfo;
-                var props2 = batchControlInfo.GetAllProperties();
-                var val = batchControlInfo.GetProperty();
-                batchControlInfo.InitializeNodes();
-                //if (val is Node)
-                //{
-                //    var newVal = (Node)val;
-                //    var s = newVal.GetProperty();
-                //}
-            }
-        }
+        // The structure is read into an XElment.
+        // In theory we can now always check based on the XElement what kind of type it is by looking it up in XSD.
+        // I am wondering if there is a better way to populate the tree.
+        PopulateNodes(content);
     }
 
-    public void ReadNode()
+    private void PopulateNodes(XElement content)
     {
-
+        //Depth or breadth tracersing XElement to populate it based on information in XSD
+        throw new NotImplementedException();
     }
 }
-
