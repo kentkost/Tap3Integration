@@ -6,7 +6,7 @@ public class OldAnyReader
 {
     private static string inFile = @"E:/repos/Tap3Integration/SampleData/tdcsample.xer";
 
-    public Node root = null;
+    public OldNode root = null;
 
 
     public OldAnyReader()
@@ -20,9 +20,9 @@ public class OldAnyReader
         
         var first = serializer.Deserialize(fileStream);
 
-        if(first is Node)
+        if(first is OldNode)
         {
-            root = (Node)first;
+            root = (OldNode)first;
         }
 
         if (root is DataInterChangeType)
