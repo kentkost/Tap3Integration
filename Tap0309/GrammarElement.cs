@@ -2,7 +2,7 @@
 
 namespace Tap0309;
 
-public enum GrammarType {SIMPLE, COMPLEX, SEQUENCE, CHOICE}
+public enum GrammarType {SIMPLE, COMPLEX, SEQUENCE, CHOICE, UNDEFINED = 999}
 
 public class GrammarElement
 {
@@ -14,8 +14,7 @@ public class GrammarElement
     public string TagType; // implicit, explicit.
     public string BaseType;
 
-    public ASN1Choice Choice { get; set; }
-    public List<ASN1Element> Sequence = new List<ASN1Element>();
+    public ASN1ElementsContainer elements { get;set; }
 
     public GrammarElement()
     {
@@ -23,10 +22,23 @@ public class GrammarElement
     }
 }
 
+public class ASN1ElementsContainer
+{
+    public UInt64 MinOccurs = 0;
+    public UInt64 MaxOccurs = 1;
+
+    public List<ASN1Element> Elements;
+
+
+    public ASN1ElementsContainer()
+    {
+    }
+}
+
 public class ASN1Choice
 {
     public UInt64 MinOccurs = 0;
-    public UInt64 MaxOccurs = UInt64.MaxValue;
+    public UInt64 MaxOccurs = 1;
 
     public List<ASN1Element> Elements; 
 
@@ -46,4 +58,7 @@ public class ASN1Element
     public ASN1Element()
     {
     }
+
+    public string MinOccurs { get; set; }
+    public string MaxOccurs { get; set; }
 }

@@ -11,6 +11,8 @@ public class AnyReader
     public readonly string version = "3.09";
     private List<GrammarElement> grammarElements= new List<GrammarElement>();
 
+    private XmlNamespaceManager mngr;
+
     public AnyReader()
     {
 
@@ -66,7 +68,7 @@ public class AnyReader
 
         // Get all Complextypes and simpletypes first.
         XmlDocument document = new XmlDocument();
-        var mngr = new XmlNamespaceManager(document.NameTable);
+        mngr = new XmlNamespaceManager(document.NameTable);
         mngr.AddNamespace("xsd", @"http://www.w3.org/2001/XMLSchema");
         mngr.AddNamespace("asn1", @"http://www.obj-sys.com/v1.0/XMLSchema");
         document.Load(filePath);
@@ -74,19 +76,27 @@ public class AnyReader
         if (document.DocumentElement == null) return;
 
         var simpleTypes = document.DocumentElement.SelectNodes(".//xsd:simpleType[@name='RadioChannelUsed']", mngr);
-        var complexTypes= document.DocumentElement.SelectNodes(".//xsd:complexType", mngr);
+        var complexTypes= document.DocumentElement.SelectNodes(".//xsd:complexType[@name='TotalChargeValueList']", mngr);
         
         //Handle each type separately.
-        if (simpleTypes != null)
+        //if (simpleTypes != null)
+        //{
+        //    foreach (XmlNode n in simpleTypes)
+        //    {
+        //        ReadSimpleType(n);
+        //    }
+        //}
+
+        if(complexTypes != null)
         {
-            foreach (XmlNode n in simpleTypes)
+            foreach(XmlNode n in complexTypes)
             {
-                ReadSimpleType(n,mngr);
+                ReadComplexType(n);
             }
         }
     }
 
-    private GrammarElement ReadSimpleType(XmlNode node, XmlNamespaceManager mngr)
+    private GrammarElement ReadSimpleType(XmlNode node)
     {
         var e = new GrammarElement();
         if (node == null) return e;
@@ -98,20 +108,67 @@ public class AnyReader
         var classNumber = GetAttributeValue(tagInfo, "classnumber");
         var tagtype     = GetAttributeValue(tagInfo, "tagtype");
 
-        var restriction = node.SelectSingleNode(".//xsd:restriction", mngr);
+        var restriction = node.SelectSingleNode(".//xsd:restriction", mngr); // No restriction on complex types and therefore no basetype
         var baseType = GetAttributeValue(restriction, "base");
         return e;
     }
 
-    private GrammarElement ReadComplexType(XmlNode node, XmlNamespaceManager mngr)
+    private GrammarElement ReadComplexType(XmlNode node)
     {
-        var e = ReadSimpleType(node, mngr);
-        
+        var e = ReadSimpleType(node);
+        e.Type = GrammarType.UNDEFINED;
         //Find choices
+        var elementsParentNode = node.SelectSingleNode(".//xsd:choice | .//xsd:sequence", mngr);
+        if (elementsParentNode == null)
+        {
+            Console.WriteLine("Could not resolve complex type for: "+node.InnerXml);
+            return e;
+        }
 
-        //Find Sequences
-        
+        if (elementsParentNode.Name.Contains("choice", StringComparison.OrdinalIgnoreCase))
+        {
+            e.Type = GrammarType.CHOICE;
+        }
+        else if(elementsParentNode.Name.Contains("sequence", StringComparison.OrdinalIgnoreCase))
+        {
+            e.Type = GrammarType.SEQUENCE;
+        }
+        var res = ReadInnerElements(elementsParentNode);
+
         return e;
+    }
+
+    private List<ASN1Element> ReadInnerElements(XmlNode node)
+    {
+        return null;
+    }
+
+    private ASN1Element ReadElement(XmlNode node)
+    {
+        if (node == null) return null;
+        
+        var e = new ASN1Element();
+
+        e.Name = GetAttributeValue(node, "name");
+        e.MinOccurs = GetAttributeValue(node, "minOccurs");
+        e.MaxOccurs = GetAttributeValue(node, "maxOccurs");
+        //Set min and max occurence based on these strings.
+        // If empty min string then min occurence is 1 and max occurence is 1 
+        // if max occurs is empty string then max occurence is 1.
+        // if max occurs is "unbounded" then max occurence is int32.maxValue
+        e.Type = GetAttributeValue(node, "type");
+
+        return e;
+    }
+
+    private ASN1Choice ReadChoice(XmlNode node)
+    {
+        return null;
+    }
+
+    private List<ASN1Element> ReadSequence(XmlNode node)
+    {
+        return null;
     }
 
     private string GetAttributeValue(XmlNode? node, string attribute)
