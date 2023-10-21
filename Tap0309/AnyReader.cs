@@ -140,7 +140,19 @@ public class AnyReader
 
     private List<ASN1Element> ReadInnerElements(XmlNode node)
     {
-        return null;
+        var elements = new List<ASN1Element>();
+
+        var minOccurs = GetAttributeValue(node, "minOccurs");
+        var maxOccurs= GetAttributeValue(node, "maxOccurs");
+
+        var elementNodes = node.SelectNodes(".//xsd:element");
+
+        foreach(XmlNode element in elementNodes)
+        {
+            elements.Add(ReadElement(element));
+        }
+
+        return elements;
     }
 
     private ASN1Element ReadElement(XmlNode node)
@@ -159,16 +171,6 @@ public class AnyReader
         e.Type = GetAttributeValue(node, "type");
 
         return e;
-    }
-
-    private ASN1Choice ReadChoice(XmlNode node)
-    {
-        return null;
-    }
-
-    private List<ASN1Element> ReadSequence(XmlNode node)
-    {
-        return null;
     }
 
     private string GetAttributeValue(XmlNode? node, string attribute)
