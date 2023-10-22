@@ -77,7 +77,8 @@ public class AnyReader
 
         var simpleTypes = document.DocumentElement.SelectNodes(".//xsd:simpleType[@name='RadioChannelUsed']", mngr);
         var complexTypes= document.DocumentElement.SelectNodes(".//xsd:complexType[@name='TotalChargeValueList']", mngr);
-        
+        List<GrammarElement> elements = new List<GrammarElement>();
+
         //Handle each type separately.
         //if (simpleTypes != null)
         //{
@@ -91,15 +92,20 @@ public class AnyReader
         {
             foreach(XmlNode n in complexTypes)
             {
-                ReadComplexType(n);
+                var e = ReadComplexType(n);
+                
+                if (string.IsNullOrWhiteSpace(e.Name)) 
+                    continue;
+
+                elements.Add(e);
             }
         }
     }
 
     private GrammarElement ReadSimpleType(XmlNode node)
     {
-        var e = new GrammarElement();
-        if (node == null) return e;
+        if (node == null) 
+            return new GrammarElement();
         
         var typeName = GetAttributeValue(node, "name");
         var tagInfo = node.SelectSingleNode(".//asn1:taginfo",mngr);
@@ -110,6 +116,9 @@ public class AnyReader
 
         var restriction = node.SelectSingleNode(".//xsd:restriction", mngr); // No restriction on complex types and therefore no basetype
         var baseType = GetAttributeValue(restriction, "base");
+
+        var e = new GrammarElement(typeName, className, classNumber, tagtype, baseType);
+
         return e;
     }
 
