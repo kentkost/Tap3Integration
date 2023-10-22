@@ -11,10 +11,10 @@ public class GrammarElement
     public string TagInfo;
     public int ClassNumber;
     
-    public string TagType; // implicit, explicit.
-    public string BaseType;
+    public string TagType; // implicit, explicit. Should be presen on both 
+    public string BaseType; // Only present on simpletypes
 
-    public ASN1ElementsContainer elements { get;set; }
+    public ASN1ElementsContainer elements { get;set; } // only has elements on complextypes
 
     public GrammarElement()
     {
@@ -22,6 +22,7 @@ public class GrammarElement
     }
 }
 
+// I know whether this is a sequence or choice based on GrammarElement.
 public class ASN1ElementsContainer
 {
     public UInt64 MinOccurs = 0;
@@ -33,21 +34,6 @@ public class ASN1ElementsContainer
     public ASN1ElementsContainer()
     {
     }
-}
-
-public class ASN1Choice
-{
-    public UInt64 MinOccurs = 0;
-    public UInt64 MaxOccurs = 1;
-
-    public List<ASN1Element> Elements; 
-
-
-    public ASN1Choice()
-    {
-    }
-
-    public bool GetAvailableChoices() { return true; }
 }
 
 public class ASN1Element
