@@ -9,7 +9,8 @@ public class AnyReader
     private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
     private static OldNode root;
     public readonly string version = "3.09";
-    private List<GrammarElement> grammarElements= new List<GrammarElement>();
+    //private List<GrammarElement> grammarElements= new List<GrammarElement>();
+    private Dictionary<string, GrammarElement> grammarElements = new Dictionary<string, GrammarElement>();
 
     private XmlNamespaceManager mngr;
 
@@ -77,27 +78,27 @@ public class AnyReader
 
         var simpleTypes = document.DocumentElement.SelectNodes(".//xsd:simpleType[@name='RadioChannelUsed']", mngr);
         var complexTypes= document.DocumentElement.SelectNodes(".//xsd:complexType[@name='TotalChargeValueList']", mngr);
-        List<GrammarElement> elements = new List<GrammarElement>();
 
         //Handle each type separately.
-        //if (simpleTypes != null)
-        //{
-        //    foreach (XmlNode n in simpleTypes)
-        //    {
-        //        ReadSimpleType(n);
-        //    }
-        //}
+        if (simpleTypes != null)
+        {
+            foreach (XmlNode n in simpleTypes)
+            {
+                ReadSimpleType(n);
+            }
+        }
 
-        if(complexTypes != null)
+        if (complexTypes != null)
         {
             foreach(XmlNode n in complexTypes)
             {
+                //get name first 
                 var e = ReadComplexType(n);
                 
                 if (string.IsNullOrWhiteSpace(e.Name)) 
                     continue;
 
-                elements.Add(e);
+                grammarElements.Add(e.Name,e);
             }
         }
     }
@@ -141,7 +142,7 @@ public class AnyReader
         if (e.Type == GrammarType.UNDEFINED)
             Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
 
-        e.ElementsContainer = ReadInnerElements(node);
+        e.ElementsContainer = ReadInnerElements(elementsParentNode);
         e.ElementsContainer.Type = e.Type;
 
         return e;
@@ -155,12 +156,11 @@ public class AnyReader
         var sizeContraints = GetSizeContraints(node);
         var container = new ASN1ElementsContainer(sizeContraints.minOccurs, sizeContraints.maxOccurs);
 
-        var elementNodes = node.SelectNodes(".//xsd:element");
+        var elementNodes = node.SelectNodes(".//xsd:element", mngr);
 
         foreach(XmlNode element in elementNodes)
         {
             container.Elements.Add(ReadElement(element));
-            ReadElementx(element);
         }
 
         return container;
