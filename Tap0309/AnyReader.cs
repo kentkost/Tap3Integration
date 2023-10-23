@@ -160,6 +160,7 @@ public class AnyReader
         foreach(XmlNode element in elementNodes)
         {
             container.Elements.Add(ReadElement(element));
+            ReadElementx(element);
         }
 
         return container;
