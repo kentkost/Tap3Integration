@@ -136,37 +136,55 @@ public class AnyReader
         else
         {
             e.SetType(elementsParentNode.Name);
-            //Add setter to GrammarElement for innerElements
-            var sizeContraint = GetSizeContraints(elementsParentNode);
-            e.ElementsContainer = new ASN1ElementsContainer(e.Type, sizeContraint.minOccurs, sizeContraint.maxOccurs);
-            var elements = ReadInnerElements(elementsParentNode);
-            e.ElementsContainer.Elements = elements;
         } 
 
         if (e.Type == GrammarType.UNDEFINED)
-        {
             Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
-            return e;
-        }
+
+        e.ElementsContainer = ReadInnerElements(node);
+        e.ElementsContainer.Type = e.Type;
 
         return e;
     }
 
-    private List<ASN1Element> ReadInnerElements(XmlNode node)
+    private ASN1ElementsContainer ReadInnerElements(XmlNode node)
     {
-        var elements = new List<ASN1Element>();
-
-        var minOccurs = GetAttributeValue(node, "minOccurs");
-        var maxOccurs= GetAttributeValue(node, "maxOccurs");
+        if (node == null)
+            return new ASN1ElementsContainer();
+        
+        var sizeContraints = GetSizeContraints(node);
+        var container = new ASN1ElementsContainer(sizeContraints.minOccurs, sizeContraints.maxOccurs);
 
         var elementNodes = node.SelectNodes(".//xsd:element");
 
         foreach(XmlNode element in elementNodes)
         {
-            elements.Add(ReadElement(element));
+            container.Elements.Add(ReadElement(element));
         }
 
-        return elements;
+        return container;
+    }
+
+    private ASN1Element ReadElement(XmlNode node)
+    {
+        if (node == null) 
+            return new ASN1Element();
+
+        string name = GetAttributeValue(node, "name");
+        string type = GetAttributeValue(node, "type");
+        var sizeContraints = GetSizeContraints(node);
+        var e = new ASN1Element(name, type, sizeContraints.minOccurs, sizeContraints.maxOccurs);
+        return e;
+    }
+
+    private string GetAttributeValue(XmlNode node, string attribute)
+    {
+        if (node == null) return string.Empty;
+        if (node.Attributes == null) return string.Empty;
+
+        return node.Attributes[attribute] != null 
+            ? node.Attributes[attribute].Value 
+            : string.Empty;
     }
 
     private (UInt64 minOccurs, UInt64 maxOccurs) GetSizeContraints(XmlNode node)
@@ -176,7 +194,7 @@ public class AnyReader
         UInt64 maxValue = 1;
 
         if (node == null)
-            return (minValue, maxValue); 
+            return (minValue, maxValue);
 
         string min = GetAttributeValue(node, "minOccurs");
         string max = GetAttributeValue(node, "maxOccurs");
@@ -191,31 +209,6 @@ public class AnyReader
                 UInt64.TryParse(min, out maxValue);
 
         return (minValue, maxValue);
-    }
-
-    private ASN1Element ReadElement(XmlNode node)
-    {
-        if (node == null) 
-            return new ASN1Element();
-
-        string name = GetAttributeValue(node, "name");
-        string type = GetAttributeValue(node, "type");
-        string minOccurs = GetAttributeValue(node, "minOccurs");
-        string maxOccurs = GetAttributeValue(node, "maxOccurs");
-        var e = new ASN1Element(name, type);
-        e.SetSizeConstraints(minOccurs, maxOccurs);
-
-        return e;
-    }
-
-    private string GetAttributeValue(XmlNode node, string attribute)
-    {
-        if (node == null) return string.Empty;
-        if (node.Attributes == null) return string.Empty;
-
-        return node.Attributes[attribute] != null 
-            ? node.Attributes[attribute].Value 
-            : string.Empty;
     }
 
     /// <summary>

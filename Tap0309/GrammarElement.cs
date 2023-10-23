@@ -14,7 +14,7 @@ public class GrammarElement
     private readonly TagType tagType = TagType.UNDEFINED; // implicit, explicit. Should be present on both 
     private readonly string baseType = ""; // Only present on simpletypes
 
-    private ASN1ElementsContainer elementsContainer = null;
+    private ASN1ElementsContainer elementsContainer = new ASN1ElementsContainer();
 
     //Getters
     public string Name => name;
@@ -82,14 +82,18 @@ public class GrammarElement
 // I know whether this is a sequence or choice based on GrammarElement.
 public class ASN1ElementsContainer
 {
-    private UInt64 minOccurs = 0;
+    private UInt64 minOccurs = 1;
     private UInt64 maxOccurs = 1;
     private GrammarType type = GrammarType.UNDEFINED;
     private List<ASN1Element> elements = new List<ASN1Element>();
 
-    public ASN1ElementsContainer(GrammarType type, UInt64 minOccurs, UInt64 maxOccurs)
+    public ASN1ElementsContainer()
     {
-        this.type = type;
+    }
+
+    public ASN1ElementsContainer(UInt64 minOccurs, UInt64 maxOccurs)
+    {
+        this.Type = type;
         this.minOccurs = minOccurs;
         this.maxOccurs = maxOccurs;
     }
@@ -97,38 +101,30 @@ public class ASN1ElementsContainer
     public ulong MinOccurs { get => minOccurs;}
     public ulong MaxOccurs { get => maxOccurs;}
     public List<ASN1Element> Elements { get => elements; set => elements = value; }
+    public GrammarType Type { get => type; set => type = value; }
 }
 
 public class ASN1Element
 {
     private string name = "";
     private string type = "";
-    private UInt64 minOccurs = 0;
+    private UInt64 minOccurs = 1;
     private UInt64 maxOccurs = 1;
 
     public ASN1Element()
     {
     }
 
-    public ASN1Element(string name, string type)
+    public ASN1Element(string name, string type, UInt64 minOCcurs, UInt64 maxOccurs)
     {
         this.name = name;
         this.type = type;
+        this.minOccurs = minOCcurs;
+        this.maxOccurs = maxOccurs;
     }
 
     public string Name { get => name;}
     public string Type { get => type;}
     public ulong MinOccurs { get => minOccurs;}
     public ulong MaxOccurs { get => maxOccurs;}
-
-    public void SetSizeConstraints(string minOccurs, string maxOccurs)
-    {
-        //Set min and max occurence based on these strings.
-        // If empty min string then min occurence is 1 and max occurence is 1 
-        // if max occurs is empty string then max occurence is 1.
-        // if max occurs is "unbounded" then max occurence is int32.maxValue
-
-
-        throw new NotImplementedException();
-    }
 }
