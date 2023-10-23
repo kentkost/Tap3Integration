@@ -128,15 +128,21 @@ public class AnyReader
 
         //Find choices
         var elementsParentNode = node.SelectSingleNode(".//xsd:choice | .//xsd:sequence", mngr);
-        if (elementsParentNode == null)
+
+        if(elementsParentNode == null)
+            Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
+        else
         {
-            Console.WriteLine("Could not resolve complex type for: "+node.InnerXml);
+            e.SetType(elementsParentNode.Name);
+            //Add setter to GrammarElement for innerElements
+            var elements = ReadInnerElements(elementsParentNode);
+        } 
+
+        if (e.Type == GrammarType.UNDEFINED)
+        {
+            Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
             return e;
         }
-
-        e.SetType(elementsParentNode.Name);
-
-        var res = ReadInnerElements(elementsParentNode);
 
         return e;
     }
