@@ -1,0 +1,114 @@
+   <xsd:complexType name="TotalChargeValue">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="222" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="chargeType" minOccurs="0" type="ChargeType"/>
+         <xsd:element name="totalCharge" minOccurs="0" type="AbsoluteAmount"/>
+         <xsd:element name="totalChargeRefund" minOccurs="0" type="TotalChargeRefund"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+      <xsd:complexType name="TotalAdvisedChargeValue">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="360" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="advisedChargeCurrency" minOccurs="0" type="AdvisedChargeCurrency"/>
+         <xsd:element name="totalAdvisedCharge" minOccurs="0" type="TotalAdvisedCharge"/>
+         <xsd:element name="totalAdvisedChargeRefund" minOccurs="0" type="TotalAdvisedChargeRefund"/>
+         <xsd:element name="totalCommission" minOccurs="0" type="TotalCommission"/>
+         <xsd:element name="totalCommissionRefund" minOccurs="0" type="TotalCommissionRefund"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+      <xsd:complexType name="CallEventDetailList">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="3" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="mobileOriginatedCall" type="MobileOriginatedCall"/>
+         <xsd:element name="mobileTerminatedCall" type="MobileTerminatedCall"/>
+         <xsd:element name="supplServiceEvent" type="SupplServiceEvent"/>
+         <xsd:element name="serviceCentreUsage" type="ServiceCentreUsage"/>
+         <xsd:element name="valueAddedService" type="ValueAddedService"/>
+         <xsd:element name="gprsCall" type="GprsCall"/>
+         <xsd:element name="contentTransaction" type="ContentTransaction"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+
+      <xsd:complexType name="NetworkDesc">
+      <xsd:choice>
+         <xsd:element name="name" type="Name"/>
+         <xsd:element name="tadigCode" type="PlmnId"/>
+         <xsd:element name="homeBid" type="HomeBid"/>
+         <xsd:element name="homeLocationDescription" type="LocationDescription"/>
+         <xsd:element name="apn" type="AccessPointName"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+      <xsd:complexType name="InternetServiceProviderId">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="329" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="internetServiceProviderIdType" minOccurs="0" type="ProviderIdType"/>
+         <xsd:element name="internetServiceProviderId" minOccurs="0" type="ProviderId"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+      <xsd:complexType name="CallEventDetailList">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="3" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+         <xsd:element name="mobileOriginatedCall" type="MobileOriginatedCall"/>
+         <xsd:element name="mobileTerminatedCall" type="MobileTerminatedCall"/>
+         <xsd:element name="supplServiceEvent" type="SupplServiceEvent"/>
+         <xsd:element name="serviceCentreUsage" type="ServiceCentreUsage"/>
+         <xsd:element name="valueAddedService" type="ValueAddedService"/>
+         <xsd:element name="gprsCall" type="GprsCall"/>
+         <xsd:element name="contentTransaction" type="ContentTransaction"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+    <xsd:simpleType name="BCDString">
+      <xsd:restriction base="xsd:hexBinary"/>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="AiurRequested">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="34" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:integer"/>
+   </xsd:simpleType>
+
+   <xsd:simpleType name="AccessPointNameNI">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="261" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:restriction base="AsciiString"/>
+   </xsd:simpleType>
