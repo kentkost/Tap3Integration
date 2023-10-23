@@ -9,8 +9,11 @@ public class AnyReader
     private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
     private static OldNode root;
     public readonly string version = "3.09";
-    //private List<GrammarElement> grammarElements= new List<GrammarElement>();
-    private Dictionary<string, GrammarElement> grammarElements = new Dictionary<string, GrammarElement>();
+
+    // Used for checking which elements are possible under each element in an xml structure
+    private Dictionary<string, GrammarElement> grammarStructure = new Dictionary<string, GrammarElement>();
+    // Used for checking which type an element in an xml structure is
+    private Dictionary<string, ASN1Element> grammarElements = new Dictionary<string, ASN1Element>();
 
     private XmlNamespaceManager mngr;
 
@@ -65,7 +68,6 @@ public class AnyReader
 
         //read this. I am also sure I have a separate project for this where I've done the same. But meh
         // https://github.com/kentkost/tap3teststemp/blob/master/testing/testing/AsnXmlGrammarReader.cs This is the project
-        // Skip element.
 
         // Get all Complextypes and simpletypes first.
         XmlDocument document = new XmlDocument();
@@ -74,32 +76,50 @@ public class AnyReader
         mngr.AddNamespace("asn1", @"http://www.obj-sys.com/v1.0/XMLSchema");
         document.Load(filePath);
 
-        if (document.DocumentElement == null) return;
+        if (document.DocumentElement == null) 
+            return;
 
-        var simpleTypes = document.DocumentElement.SelectNodes(".//xsd:simpleType[@name='RadioChannelUsed']", mngr);
-        var complexTypes= document.DocumentElement.SelectNodes(".//xsd:complexType[@name='TotalChargeValueList']", mngr);
+        var simple = "xsd:simpleType";
+        var complex = "xsd:complexType";
+        var element = "xsd:element";
+
+        var grammarNodes = document.DocumentElement.SelectNodes($".//{simple} | .//{complex}", mngr);
+        var elementNodes = document.DocumentElement.SelectNodes($".//{element}", mngr);
 
         //Handle each type separately.
-        if (simpleTypes != null)
+        if (grammarNodes == null) 
+            goto checkElements;
+        
+        foreach (XmlNode n in grammarNodes)
         {
-            foreach (XmlNode n in simpleTypes)
-            {
-                ReadSimpleType(n);
-            }
+            var grammarElement = new GrammarElement();
+            if (n.Name == simple)
+                grammarElement = ReadSimpleType(n);
+            else if (n.Name == complex)
+                grammarElement = ReadComplexType(n);
+            else
+                continue;
+
+            if (string.IsNullOrWhiteSpace(grammarElement.Name))
+                continue;
+
+            grammarStructure.Add(grammarElement.Name, grammarElement);
         }
 
-        if (complexTypes != null)
-        {
-            foreach(XmlNode n in complexTypes)
-            {
-                //get name first 
-                var e = ReadComplexType(n);
-                
-                if (string.IsNullOrWhiteSpace(e.Name)) 
-                    continue;
+        // Split into two methods
+        checkElements:
 
-                grammarElements.Add(e.Name,e);
-            }
+        if(elementNodes == null) return;
+
+        foreach (XmlNode n in elementNodes)
+        {
+            var e = ReadElement(n);
+
+            if (string.IsNullOrWhiteSpace(e.Name))
+                continue;
+            if (grammarElements.ContainsKey(e.Name))
+                continue;
+            grammarElements.Add(e.Name, e);
         }
     }
 

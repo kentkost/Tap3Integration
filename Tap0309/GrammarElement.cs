@@ -93,7 +93,6 @@ public class ASN1ElementsContainer
 
     public ASN1ElementsContainer(UInt64 minOccurs, UInt64 maxOccurs)
     {
-        this.Type = type;
         this.minOccurs = minOccurs;
         this.maxOccurs = maxOccurs;
     }
