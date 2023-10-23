@@ -14,7 +14,7 @@ public class GrammarElement
     private readonly TagType tagType = TagType.UNDEFINED; // implicit, explicit. Should be present on both 
     private readonly string baseType = ""; // Only present on simpletypes
 
-    private ASN1ElementsContainer elements = new ASN1ElementsContainer(); // only has elements on complextypes
+    private ASN1ElementsContainer elementsContainer = null;
 
     //Getters
     public string Name => name;
@@ -23,7 +23,8 @@ public class GrammarElement
     public ClassType ClassType => classType;
     public TagType TagType => tagType;
     public string BaseType => baseType;
-    public ASN1ElementsContainer Elements { get => elements; }
+
+    public ASN1ElementsContainer ElementsContainer { get => elementsContainer; set => elementsContainer = value; }
 
     public GrammarElement() { }
 
@@ -81,26 +82,53 @@ public class GrammarElement
 // I know whether this is a sequence or choice based on GrammarElement.
 public class ASN1ElementsContainer
 {
-    public UInt64 MinOccurs = 0;
-    public UInt64 MaxOccurs = 1;
+    private UInt64 minOccurs = 0;
+    private UInt64 maxOccurs = 1;
+    private GrammarType type = GrammarType.UNDEFINED;
+    private List<ASN1Element> elements = new List<ASN1Element>();
 
-    public List<ASN1Element> Elements;
-
-
-    public ASN1ElementsContainer()
+    public ASN1ElementsContainer(GrammarType type, UInt64 minOccurs, UInt64 maxOccurs)
     {
+        this.type = type;
+        this.minOccurs = minOccurs;
+        this.maxOccurs = maxOccurs;
     }
+
+    public ulong MinOccurs { get => minOccurs;}
+    public ulong MaxOccurs { get => maxOccurs;}
+    public List<ASN1Element> Elements { get => elements; set => elements = value; }
 }
 
 public class ASN1Element
 {
-    public string Name;
-    public string Type;
+    private string name = "";
+    private string type = "";
+    private UInt64 minOccurs = 0;
+    private UInt64 maxOccurs = 1;
 
     public ASN1Element()
     {
     }
 
-    public string MinOccurs { get; set; }
-    public string MaxOccurs { get; set; }
+    public ASN1Element(string name, string type)
+    {
+        this.name = name;
+        this.type = type;
+    }
+
+    public string Name { get => name;}
+    public string Type { get => type;}
+    public ulong MinOccurs { get => minOccurs;}
+    public ulong MaxOccurs { get => maxOccurs;}
+
+    public void SetSizeConstraints(string minOccurs, string maxOccurs)
+    {
+        //Set min and max occurence based on these strings.
+        // If empty min string then min occurence is 1 and max occurence is 1 
+        // if max occurs is empty string then max occurence is 1.
+        // if max occurs is "unbounded" then max occurence is int32.maxValue
+
+
+        throw new NotImplementedException();
+    }
 }

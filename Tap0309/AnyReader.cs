@@ -129,13 +129,18 @@ public class AnyReader
         //Find choices
         var elementsParentNode = node.SelectSingleNode(".//xsd:choice | .//xsd:sequence", mngr);
 
-        if(elementsParentNode == null)
+        if (elementsParentNode == null)
+        {
             Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
+        }
         else
         {
             e.SetType(elementsParentNode.Name);
             //Add setter to GrammarElement for innerElements
+            var sizeContraint = GetSizeContraints(elementsParentNode);
+            e.ElementsContainer = new ASN1ElementsContainer(e.Type, sizeContraint.minOccurs, sizeContraint.maxOccurs);
             var elements = ReadInnerElements(elementsParentNode);
+            e.ElementsContainer.Elements = elements;
         } 
 
         if (e.Type == GrammarType.UNDEFINED)
@@ -164,34 +169,53 @@ public class AnyReader
         return elements;
     }
 
+    private (UInt64 minOccurs, UInt64 maxOccurs) GetSizeContraints(XmlNode node)
+    {
+        //Default is optional and max one occurs
+        UInt64 minValue = 1;
+        UInt64 maxValue = 1;
+
+        if (node == null)
+            return (minValue, maxValue); 
+
+        string min = GetAttributeValue(node, "minOccurs");
+        string max = GetAttributeValue(node, "maxOccurs");
+
+        if (!string.IsNullOrWhiteSpace(min))
+            UInt64.TryParse(min, out minValue);
+
+        if (!string.IsNullOrWhiteSpace(max))
+            if (string.Equals(max, "unbounded", StringComparison.InvariantCultureIgnoreCase))
+                maxValue = UInt64.MaxValue;
+            else
+                UInt64.TryParse(min, out maxValue);
+
+        return (minValue, maxValue);
+    }
+
     private ASN1Element ReadElement(XmlNode node)
     {
-        if (node == null) return null;
-        
-        var e = new ASN1Element();
+        if (node == null) 
+            return new ASN1Element();
 
-        e.Name = GetAttributeValue(node, "name");
-        e.MinOccurs = GetAttributeValue(node, "minOccurs");
-        e.MaxOccurs = GetAttributeValue(node, "maxOccurs");
-        //Set min and max occurence based on these strings.
-        // If empty min string then min occurence is 1 and max occurence is 1 
-        // if max occurs is empty string then max occurence is 1.
-        // if max occurs is "unbounded" then max occurence is int32.maxValue
-        e.Type = GetAttributeValue(node, "type");
+        string name = GetAttributeValue(node, "name");
+        string type = GetAttributeValue(node, "type");
+        string minOccurs = GetAttributeValue(node, "minOccurs");
+        string maxOccurs = GetAttributeValue(node, "maxOccurs");
+        var e = new ASN1Element(name, type);
+        e.SetSizeConstraints(minOccurs, maxOccurs);
 
         return e;
     }
 
-    private string GetAttributeValue(XmlNode? node, string attribute)
+    private string GetAttributeValue(XmlNode node, string attribute)
     {
         if (node == null) return string.Empty;
         if (node.Attributes == null) return string.Empty;
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
         return node.Attributes[attribute] != null 
             ? node.Attributes[attribute].Value 
             : string.Empty;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
     }
 
     /// <summary>
