@@ -125,7 +125,7 @@ public class AnyReader
     private GrammarElement ReadComplexType(XmlNode node)
     {
         var e = ReadSimpleType(node);
-        e.Type = GrammarType.UNDEFINED;
+
         //Find choices
         var elementsParentNode = node.SelectSingleNode(".//xsd:choice | .//xsd:sequence", mngr);
         if (elementsParentNode == null)
@@ -134,14 +134,8 @@ public class AnyReader
             return e;
         }
 
-        if (elementsParentNode.Name.Contains("choice", StringComparison.OrdinalIgnoreCase))
-        {
-            e.Type = GrammarType.CHOICE;
-        }
-        else if(elementsParentNode.Name.Contains("sequence", StringComparison.OrdinalIgnoreCase))
-        {
-            e.Type = GrammarType.SEQUENCE;
-        }
+        e.SetType(elementsParentNode.Name);
+
         var res = ReadInnerElements(elementsParentNode);
 
         return e;
