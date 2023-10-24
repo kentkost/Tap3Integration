@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Tap3Studio.ViewModels;
 
 namespace Tap3Studio.Views
 {
@@ -7,6 +8,9 @@ namespace Tap3Studio.Views
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel vm = (MainWindowViewModel)this.DataContext;
+
+            //dataTree.ItemsSource = vm.ObjectNode;
         }
     }
 }

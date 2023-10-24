@@ -3,12 +3,13 @@
         xmlns:vm="using:Tap3Studio.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:model="clr-namespace:Tap0309;assembly=Tap0309"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Tap3Studio.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+		xmlns:local="clr-namespace:Tap3Studio.ViewModels"
         Icon="/Assets/avalonia-logo.ico"
         Title="Tap3Studio">
-
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
@@ -17,14 +18,32 @@
 
   <Grid>
 	<TabControl>
+
+	  <TabItem Header="Object">
+
+		<StackPanel Orientation="Vertical">
+		  <Label Content="{Binding Greeting}" />
+
+		  <TreeView x:Name="dataTree" ItemsSource = "{Binding ObjectNode}">
+			<TreeView.ItemTemplate>
+			  <TreeDataTemplate x:DataType="model:Node" ItemsSource="{Binding Children}" >
+				<TextBlock Text="{Binding TypeName}"/>
+			  </TreeDataTemplate>
+			</TreeView.ItemTemplate>
+		  </TreeView>
+
+		  <Label Content="{Binding FuckOff}" />
+		</StackPanel>
+
+	  </TabItem>
+	  
 	  <TabItem Header="XML">
 		<Label Content="Content goes here..." />
 	  </TabItem>
-	  <TabItem Header="XDocument">
+	  <TabItem Header="XMLDocument">
+
 		<Label Content="Content goes here..." />
-	  </TabItem>
-	  <TabItem Header="Object">
-		<Label Content="Content goes here..." />
+		
 	  </TabItem>
 	  <TabItem Header="BaseObject">
 		<Label Content="Content goes here..." />

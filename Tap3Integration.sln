@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tap0309", "Tap0309\Tap0309.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestXSD", "TestXSD\TestXSD.csproj", "{134E2080-68B7-4AB2-A515-EB08A74F692A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap3Integration.SchemaReaderTests", "Tap3Integration.SchemaReaderTests\Tap3Integration.SchemaReaderTests.csproj", "{16D8B98B-B8C3-48E5-8C27-0EB22548E5F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tap3Integration.SchemaReaderTests", "Tap3Integration.SchemaReaderTests\Tap3Integration.SchemaReaderTests.csproj", "{16D8B98B-B8C3-48E5-8C27-0EB22548E5F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tap3Studio", "Tap3Studio\Tap3Studio.csproj", "{BCAC8F8D-C483-4584-B3D4-5B51169D4506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tap3Studio", "Tap3Studio\Tap3Studio.csproj", "{BCAC8F8D-C483-4584-B3D4-5B51169D4506}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
