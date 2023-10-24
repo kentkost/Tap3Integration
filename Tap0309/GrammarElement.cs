@@ -69,18 +69,20 @@ public class GrammarElement
         }
     }    
 
-    // Don't know how the other classes are resolved yet. So far there is only Application.
+    // Don't know how the other classes are resolved yet. So far there is only Application. Also default is Application for now
     private ClassType ResolveClassType(string className) => className switch
     {
         "APPL" => ClassType.APPLICATION,
-        _ => ClassType.UNDEFINED,
+        _ => ClassType.APPLICATION,
+        //_ => ClassType.UNDEFINED,
     };
 
     private TagType ResolveTagType(string tagType) => tagType switch
     {
         "IMPLICIT" => TagType.IMPLICIT,
         "EXPLICIT" => TagType.EXPLICIT,
-        _ => TagType.UNDEFINED,
+        _ => TagType.IMPLICIT,
+        //_ => TagType.UNDEFINED,
     };
 
     private void LogWarnings()

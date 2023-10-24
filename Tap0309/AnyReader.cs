@@ -49,31 +49,35 @@ public class AnyReader
     {
         FileStream fs = new FileStream(inFile, FileMode.Open, FileAccess.Read);
         var content = XElement.Load(fs);
-        TraverseElement(content);
+
+        var node = new Node();
+
+        node.Value = content.HasElements ? "" : content.Value;
+        node.Path = content.Name.ToString();
+        var lookUpElement = grammarElements[content.Name.ToString()];
+        node.TypeName = lookUpElement.Type;
+        
+        root = node;
+
+        TraverseElement(root, content, 0);
     }
 
-    private void TraverseElement(XElement element)
+    private void TraverseElement(Node parent, XElement element, int childNumber)
     {
-        if (element == null)
-            return;
-
-        // Process the current element
-        Console.WriteLine("Element Name: " + element.Name);
-        if (!element.HasElements)
-        {
-            Console.WriteLine("Leaf of sort value: " + element.Value.ToString());
-        }
-
-        ReadElement(element);
+        //parent.Children.Add(ReadElement(parent, element, childNumber));
 
         // Recursively traverse all child elements
+        int cn = 0;
         foreach (XElement childElement in element.Elements())
         {
-            TraverseElement(childElement);
+            var child = ReadElement(parent, childElement, childNumber);
+            parent.Children.Add(child);
+            TraverseElement(child, childElement, cn);
+            cn++;
         }
     }
 
-    private Node ReadElement(XElement element)
+    private Node ReadElement(Node parent, XElement element, int childNumber)
     {
         if (element == null) 
             return null;
@@ -81,8 +85,10 @@ public class AnyReader
         var node = new Node();
 
         node.Value = element.HasElements ? "" : element.Value;
-        var eName = element.Name;
+        node.Parent = parent;
+        node.Path = parent.Path+"/"+element.Name.ToString()+$"[{childNumber}]";
         var lookUpElement = grammarElements[element.Name.ToString()];
+        node.TypeName = lookUpElement.Type;
 
         return node;
     }
