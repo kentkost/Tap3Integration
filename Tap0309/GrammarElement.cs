@@ -12,7 +12,7 @@ public class GrammarElement
     private readonly int classNumber = -1;
     private readonly ClassType classType = ClassType.UNDEFINED;
     private readonly TagType tagType = TagType.UNDEFINED; // implicit, explicit. Should be present on both 
-    private readonly string baseType = ""; // Only present on simpletypes
+    private string baseType = ""; // Only present on simpletypes and complextypes with complexcontent
 
     private ASN1ElementsContainer elementsContainer = new ASN1ElementsContainer();
 
@@ -22,7 +22,7 @@ public class GrammarElement
     public int ClassNumber => classNumber;
     public ClassType ClassType => classType;
     public TagType TagType => tagType;
-    public string BaseType => baseType;
+    public string BaseType { get => this.baseType; set => this.baseType = value; }
 
     public ASN1ElementsContainer ElementsContainer { get => elementsContainer; set => elementsContainer = value; }
 
@@ -43,6 +43,11 @@ public class GrammarElement
         }
     }
 
+    public void SetType(GrammarType type)
+    {
+        this.type = type;
+    }
+
     public void SetType(string nodeName)
     {
         if (nodeName.Contains("choice", StringComparison.OrdinalIgnoreCase))
@@ -52,6 +57,10 @@ public class GrammarElement
         else if (nodeName.Contains("sequence", StringComparison.OrdinalIgnoreCase))
         {
             type = GrammarType.SEQUENCE;
+        }
+        else if (nodeName.Contains("complexContent", StringComparison.OrdinalIgnoreCase))
+        {
+            type = GrammarType.COMPLEX;
         }
         else
         {

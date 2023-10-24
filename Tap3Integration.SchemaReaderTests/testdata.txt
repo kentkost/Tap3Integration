@@ -112,3 +112,16 @@
       </xsd:annotation>
       <xsd:restriction base="AsciiString"/>
    </xsd:simpleType>
+
+
+      <xsd:complexType name="CallEventStartTimeStamp">
+      <xsd:annotation>
+         <xsd:appinfo>
+            <!-- Tag Information -->
+            <asn1:taginfo class="APPL" classnumber="44" tagtype="IMPLICIT"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="DateTime"/>
+      </xsd:complexContent>
+   </xsd:complexType>

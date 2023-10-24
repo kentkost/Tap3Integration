@@ -17,6 +17,6 @@ class Program
     {
         //Tap0309Reader reader = new Tap0309Reader();
         AnyReader reader = new AnyReader();
-        reader.ReadStructure();
+        reader.PrepareStructures();
     }
 }

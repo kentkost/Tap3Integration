@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Runtime.CompilerServices;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Tap0309;
@@ -6,40 +7,49 @@ namespace Tap0309;
 public class AnyReader
 {
     private static string inFile = @"E:/repos/Tap3Integration/SampleData/tdcsample.xer";
-    private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
-    private static OldNode root;
+    //private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
+    string grammarFile = "E:/repos/Tap3Integration/tmp/TAP-0309(all options).xsd";
+    private Node root;
     public readonly string version = "3.09";
 
     // Used for checking which elements are possible under each element in an xml structure
     private Dictionary<string, GrammarElement> grammarStructure = new Dictionary<string, GrammarElement>();
     // Used for checking which type an element in an xml structure is
     private Dictionary<string, ASN1Element> grammarElements = new Dictionary<string, ASN1Element>();
+    private XmlDocument dataDocument;
+    private string dataString;
 
     private XmlNamespaceManager mngr;
+
+    // These are the different ways to read the data into a tree structure
+    public XmlDocument DataDocument { get => dataDocument; set => dataDocument = value; }
+    public string DataString { get => dataString; set => dataString = value; }
+    public Node Root { get => root; set => root = value; }
+
+    // I really want to test OldNode again. Since an abstract base node seems to be the way.
+    // BUt I can experiment with this once The regular node works.
+    //public OldNode Root { get => root; set => root = value; }
 
     public AnyReader()
     {
 
     }
 
-    public void ReadStructure()
+    public void PrepareStructures()
     {
-        // Read the structure into nodes.
-        //FileStream fs = new FileStream(inFile, FileMode.Open, FileAccess.Read);
-        //var content = XElement.Load(fs);
-        //TraverseElement(content);
-        
+        dataString = File.ReadAllText(inFile);
+        dataDocument = new XmlDocument();
+        dataDocument.Load(inFile);
         CreateLookUpNodes();
-
-        // The structure is read into an XElment.
-        // In theory we can now always check based on the XElement what kind of type it is by looking it up in XSD.
-        // I am wondering if there is a better way to populate the tree.
-        //PopulateNodes(content);
+        //Create Nodes
+        CreateNodes();
     }
 
-    private void PopulateNodes(XElement content)
+    private void CreateNodes()
     {
-        throw new NotImplementedException();
+        FileStream fs = new FileStream(inFile, FileMode.Open, FileAccess.Read);
+        var content = XElement.Load(fs);
+        TraverseElement(content);
     }
 
     private void TraverseElement(XElement element)
@@ -54,6 +64,8 @@ public class AnyReader
             Console.WriteLine("Leaf of sort value: " + element.Value.ToString());
         }
 
+        ReadElement(element);
+
         // Recursively traverse all child elements
         foreach (XElement childElement in element.Elements())
         {
@@ -61,20 +73,29 @@ public class AnyReader
         }
     }
 
+    private Node ReadElement(XElement element)
+    {
+        if (element == null) 
+            return null;
+
+        var node = new Node();
+
+        node.Value = element.HasElements ? "" : element.Value;
+        var eName = element.Name;
+        var lookUpElement = grammarElements[element.Name.ToString()];
+
+        return node;
+    }
+
     private void CreateLookUpNodes()
     {
-        //look up in XSD. to see what kind of element it is
-        string filePath = "E:/repos/Tap3Integration/tmp/TAP-0309(all options).xsd";
-
-        //read this. I am also sure I have a separate project for this where I've done the same. But meh
-        // https://github.com/kentkost/tap3teststemp/blob/master/testing/testing/AsnXmlGrammarReader.cs This is the project
-
         // Get all Complextypes and simpletypes first.
-        XmlDocument document = new XmlDocument();
+        var document = new XmlDocument();
         mngr = new XmlNamespaceManager(document.NameTable);
+
         mngr.AddNamespace("xsd", @"http://www.w3.org/2001/XMLSchema");
         mngr.AddNamespace("asn1", @"http://www.obj-sys.com/v1.0/XMLSchema");
-        document.Load(filePath);
+        document.Load(grammarFile);
 
         if (document.DocumentElement == null) 
             return;
@@ -149,15 +170,19 @@ public class AnyReader
 
         //Find choices
         var elementsParentNode = node.SelectSingleNode(".//xsd:choice | .//xsd:sequence", mngr);
+        var complexContent = node.SelectSingleNode(".//xsd:complexContent//xsd:extension", mngr);
 
-        if (elementsParentNode == null)
+        if (complexContent != null)
         {
-            Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
+            var baseType = GetAttributeValue(complexContent, "base");
+            e.BaseType = baseType;
+            e.SetType(GrammarType.COMPLEX);
         }
-        else
+
+        if (elementsParentNode != null)
         {
             e.SetType(elementsParentNode.Name);
-        } 
+        }
 
         if (e.Type == GrammarType.UNDEFINED)
             Console.WriteLine("Could not resolve complex type for: " + node.InnerXml);
