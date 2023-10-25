@@ -6,15 +6,15 @@ namespace Tap0309;
 
 public abstract class BaseNode
 {
-    public BaseNode Parent { get => parent; set => parent = value; }
-    public List<BaseNode> Children { get => children; set => children = value; }
-    public List<string> Fields { get => fields; set => fields = value; }
-    public string Name { get => name; set => name = value; }
+    //public BaseNode Parent { get => parent; set => parent = value; }
+    //public List<BaseNode> Children { get => children; set => children = value; }
+    //public List<string> Fields { get => fields; set => fields = value; }
+    //public string Name { get => name; set => name = value; }
 
-    private string name;
-    private List<BaseNode> children = new List<BaseNode>();
-    private List<string> fields = new List<string>();
-    private BaseNode parent = null;
+    //private string name;
+    //private List<BaseNode> children = new List<BaseNode>();
+    //private List<string> fields = new List<string>();
+    //private BaseNode parent = null;
 
     public BaseNode()
     {
@@ -42,7 +42,31 @@ public abstract class BaseNode
         return res;
     }
 
+    string serilizableAtt = "System.Xml.Serialization.XmlElementAttribute";
     public List<BaseNode> GetChildren()
+    {
+        List<BaseNode> children = new List<BaseNode>();
+        var currentNodeType = this.GetType().Name;
+        var properties = this.GetType().GetProperties();
+        foreach(var property in properties)
+        {
+            var t = property.CustomAttributes.FirstOrDefault().AttributeType.FullName;
+            if(t == serilizableAtt)
+            {
+                Console.WriteLine("Is child");
+                var child = property.GetValue(this, null) as BaseNode;
+                if (child != null)
+                {
+                    children.Add(child);
+                }
+            }
+        }
+
+        return children;
+    }
+
+    // This one is probably not possible to implement. But it shouldn't be necessary either.
+    public BaseNode GetParent()
     {
         return null;
     }

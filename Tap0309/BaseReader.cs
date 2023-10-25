@@ -52,6 +52,11 @@ public class BaseReader
         //}
     }
 
+    public void PopulateMissingProperties()
+    {
+
+    }
+
     public void ReadNode()
     {
 
