@@ -46,6 +46,7 @@ public abstract class BaseNode
     public List<BaseNode> GetChildren()
     {
         List<BaseNode> children = new List<BaseNode>();
+
         var currentNodeType = this.GetType().Name;
         var properties = this.GetType().GetProperties();
         foreach(var property in properties)
@@ -62,6 +63,7 @@ public abstract class BaseNode
             }
         }
 
+        children.First().GetChildren();
         return children;
     }
 
