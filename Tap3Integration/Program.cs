@@ -16,7 +16,10 @@ class Program
     static void Main(string[] args)
     {
         //Tap0309Reader reader = new Tap0309Reader();
-        AnyReader reader = new AnyReader();
-        reader.PrepareStructures();
+        //AnyReader reader = new AnyReader();
+        //reader.PrepareStructures();
+        BaseReader reader = new BaseReader();
+        reader.ReadStructure();
+
     }
 }

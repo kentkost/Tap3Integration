@@ -1,55 +1,63 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Tap3Studio.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:model="clr-namespace:Tap0309;assembly=Tap0309"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Tap3Studio.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-		xmlns:local="clr-namespace:Tap3Studio.ViewModels"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Tap3Studio">
+<Window
+    x:Class="Tap3Studio.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Tap3Studio.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:Tap0309;assembly=Tap0309"
+    xmlns:vm="using:Tap3Studio.ViewModels"
+    Title="Tap3Studio"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    mc:Ignorable="d">
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <!--
+            This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
+        -->
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-  <Grid>
-	<TabControl>
+    <Grid>
+        <TabControl>
 
-	  <TabItem Header="Object">
+            <TabItem Header="BaseObject">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Greeting}" />
 
-		<StackPanel Orientation="Vertical">
-		  <Label Content="{Binding Greeting}" />
+                    <TreeView x:Name="dataTree" ItemsSource="{Binding ObjectNode}">
+                        <TreeView.ItemTemplate>
+                            <TreeDataTemplate x:DataType="model:BaseNode" ItemsSource="{Binding Children}">
+                                <TextBlock Text="{Binding TypeName}" />
+                            </TreeDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
 
-		  <TreeView x:Name="dataTree" ItemsSource = "{Binding ObjectNode}">
-			<TreeView.ItemTemplate>
-			  <TreeDataTemplate x:DataType="model:Node" ItemsSource="{Binding Children}" >
-				<TextBlock Text="{Binding TypeName}"/>
-			  </TreeDataTemplate>
-			</TreeView.ItemTemplate>
-		  </TreeView>
+                    <Label Content="{Binding FuckOff}" />
+                </StackPanel>
+            </TabItem>
 
-		  <Label Content="{Binding FuckOff}" />
-		</StackPanel>
 
-	  </TabItem>
-	  
-	  <TabItem Header="XML">
-		<Label Content="Content goes here..." />
-	  </TabItem>
-	  <TabItem Header="XMLDocument">
+            <TabItem Header="Object">
 
-		<Label Content="Content goes here..." />
-		
-	  </TabItem>
-	  <TabItem Header="BaseObject">
-		<Label Content="Content goes here..." />
-	  </TabItem>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Greeting}" />
 
-	</TabControl>
-  </Grid>
-  
+                    <TreeView x:Name="dataTree" ItemsSource="{Binding ObjectNode}">
+                        <TreeView.ItemTemplate>
+                            <TreeDataTemplate x:DataType="model:Node" ItemsSource="{Binding Children}">
+                                <TextBlock Text="{Binding TypeName}" />
+                            </TreeDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+
+                    <Label Content="{Binding FuckOff}" />
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
 </Window>

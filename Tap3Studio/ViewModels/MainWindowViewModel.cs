@@ -12,6 +12,9 @@ public partial class MainWindowViewModel : ObservableObject
     private ObservableCollection<Node> objectNode = new ObservableCollection<Node>();
 
     [ObservableProperty]
+    private ObservableCollection<BaseNode> oldObjectNode = new ObservableCollection<BaseNode>();
+
+    [ObservableProperty]
     private string greeting;
 
     [ObservableProperty]
@@ -24,6 +27,7 @@ public partial class MainWindowViewModel : ObservableObject
         reader = new AnyReader();
         reader.PrepareStructures();
         objectNode.Add(reader.Root);
+        //oldObjectNode.Add();
         greeting = "Hello shithead" + reader.Root.TypeName;
         fuckOff = "generate this" + reader.Root.TypeName;
     }

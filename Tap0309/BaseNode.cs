@@ -4,19 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace Tap0309;
 
-public abstract class OldNode
+public abstract class BaseNode
 {
-    public OldNode Parent { get => parent; set => parent = value; }
-    public List<OldNode> Children { get => children; set => children = value; }
+    public BaseNode Parent { get => parent; set => parent = value; }
+    public List<BaseNode> Children { get => children; set => children = value; }
     public List<string> Fields { get => fields; set => fields = value; }
     public string Name { get => name; set => name = value; }
 
     private string name;
-    private List<OldNode> children = new List<OldNode>();
+    private List<BaseNode> children = new List<BaseNode>();
     private List<string> fields = new List<string>();
-    private OldNode parent = null;
+    private BaseNode parent = null;
 
-    public OldNode()
+    public BaseNode()
     {
     }
 
@@ -42,6 +42,11 @@ public abstract class OldNode
         return res;
     }
 
+    public List<BaseNode> GetChildren()
+    {
+        return null;
+    }
+
     public void SetProperty(string name, object value)
     {
         var props = this.GetType().GetProperties();
@@ -58,7 +63,7 @@ public abstract class OldNode
         string propName = "no prop";
         object res = 213;
 
-        var nodeName = typeof(OldNode).Name;
+        var nodeName = typeof(BaseNode).Name;
         var byteArrayName = typeof(byte[]).Name;
         var stringName = typeof(string).Name;
         var dateTimeLongName = typeof(DateTimeLong).Name;

@@ -23,7 +23,7 @@ using System.Xml.Serialization;
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlRootAttribute("DataInterChange", Namespace = "", IsNullable = false)]
-public partial class DataInterChangeType: OldNode
+public partial class DataInterChangeType: BaseNode
 {
 
 
@@ -51,7 +51,7 @@ public partial class DataInterChangeType: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class Notification: OldNode
+public partial class Notification: BaseNode
 {
 
     private byte[] senderField;
@@ -250,7 +250,7 @@ public partial class FileCreationTimeStamp : DateTimeLong
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DateTimeLong: OldNode
+public partial class DateTimeLong: BaseNode
 {
 
     private byte[] localTimeStampField;
@@ -291,7 +291,7 @@ public partial class DateTimeLong: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TotalAdvisedChargeValue: OldNode
+public partial class TotalAdvisedChargeValue: BaseNode
 {
 
     private byte[] advisedChargeCurrencyField;
@@ -380,7 +380,7 @@ public partial class TotalAdvisedChargeValue: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TotalAdvisedChargeValueList: OldNode
+public partial class TotalAdvisedChargeValueList: BaseNode
 {
 
     private TotalAdvisedChargeValue[] totalAdvisedChargeValueField;
@@ -405,7 +405,7 @@ public partial class TotalAdvisedChargeValueList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TotalChargeValue: OldNode
+public partial class TotalChargeValue: BaseNode
 {
 
     private byte[] chargeTypeField;
@@ -462,7 +462,7 @@ public partial class TotalChargeValue: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TotalChargeValueList: OldNode
+public partial class TotalChargeValueList: BaseNode
 {
 
     private TotalChargeValue[] totalChargeValueField;
@@ -487,7 +487,7 @@ public partial class TotalChargeValueList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class AuditControlInfo: OldNode
+public partial class AuditControlInfo: BaseNode
 {
 
     private EarliestCallTimeStamp earliestCallTimeStampField;
@@ -674,7 +674,7 @@ public partial class LatestCallTimeStamp : DateTimeLong
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class OperatorSpecInfoList: OldNode
+public partial class OperatorSpecInfoList: BaseNode
 {
 
     private byte[][] operatorSpecInformationField;
@@ -699,7 +699,7 @@ public partial class OperatorSpecInfoList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class AdvisedChargeInformation: OldNode
+public partial class AdvisedChargeInformation: BaseNode
 {
 
     private string paidIndicatorField;
@@ -788,7 +788,7 @@ public partial class AdvisedChargeInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ContentServiceUsed: OldNode
+public partial class ContentServiceUsed: BaseNode
 {
 
     private string contentTransactionCodeField;
@@ -1021,7 +1021,7 @@ public partial class ContentServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargeInformationList: OldNode
+public partial class ChargeInformationList: BaseNode
 {
 
     private ChargeInformation[] chargeInformationField;
@@ -1046,7 +1046,7 @@ public partial class ChargeInformationList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargeInformation: OldNode
+public partial class ChargeInformation: BaseNode
 {
 
     private byte[] chargedItemField;
@@ -1151,7 +1151,7 @@ public partial class ChargeInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CallTypeGroup: OldNode
+public partial class CallTypeGroup: BaseNode
 {
 
     private string callTypeLevel1Field;
@@ -1224,7 +1224,7 @@ public partial class CallTypeGroup: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargeDetailList: OldNode
+public partial class ChargeDetailList: BaseNode
 {
 
     private ChargeDetail[] chargeDetailField;
@@ -1249,7 +1249,7 @@ public partial class ChargeDetailList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargeDetail: OldNode
+public partial class ChargeDetail: BaseNode
 {
 
     private byte[] chargeTypeField;
@@ -1436,7 +1436,7 @@ public partial class ChargingTimeStamp : DateTime
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DateTime: OldNode
+public partial class DateTime: BaseNode
 {
 
     private byte[] localTimeStampField;
@@ -1549,7 +1549,7 @@ public partial class CallEventStartTimeStamp : DateTime
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TaxInformationList: OldNode
+public partial class TaxInformationList: BaseNode
 {
 
     private TaxInformation[] taxInformationField;
@@ -1574,7 +1574,7 @@ public partial class TaxInformationList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TaxInformation: OldNode
+public partial class TaxInformation: BaseNode
 {
 
     private string taxCodeField;
@@ -1615,7 +1615,7 @@ public partial class TaxInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DiscountInformation: OldNode
+public partial class DiscountInformation: BaseNode
 {
 
     private string discountCodeField;
@@ -1656,7 +1656,7 @@ public partial class DiscountInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NetworkDesc: OldNode
+public partial class NetworkDesc: BaseNode
 {
 
     private byte[] itemField;
@@ -1725,7 +1725,7 @@ public enum ItemChoiceType12
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NetworkIdGroup: OldNode
+public partial class NetworkIdGroup: BaseNode
 {
 
     private string networkIdTypeField;
@@ -1766,7 +1766,7 @@ public partial class NetworkIdGroup: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NetworkIdList: OldNode
+public partial class NetworkIdList: BaseNode
 {
 
     private NetworkIdGroup[] networkIdGroupField;
@@ -1791,7 +1791,7 @@ public partial class NetworkIdList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class InternetServiceProviderId: OldNode
+public partial class InternetServiceProviderId: BaseNode
 {
 
     private string internetServiceProviderIdTypeField;
@@ -1832,7 +1832,7 @@ public partial class InternetServiceProviderId: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ProviderId: OldNode
+public partial class ProviderId: BaseNode
 {
 
     private object itemField;
@@ -1878,7 +1878,7 @@ public partial class ProviderId: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class IpAddress: OldNode
+public partial class IpAddress: BaseNode
 {
 
     private byte[] itemField;
@@ -1964,7 +1964,7 @@ public enum ItemChoiceType11
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class InternetServiceProviderIdList: OldNode
+public partial class InternetServiceProviderIdList: BaseNode
 {
 
     private InternetServiceProviderId[] internetServiceProviderIdField;
@@ -1989,7 +1989,7 @@ public partial class InternetServiceProviderIdList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ContentProviderId: OldNode
+public partial class ContentProviderId: BaseNode
 {
 
     private string contentProviderIdTypeField;
@@ -2030,7 +2030,7 @@ public partial class ContentProviderId: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ContentProviderIdList: OldNode
+public partial class ContentProviderIdList: BaseNode
 {
 
     private ContentProviderId[] contentProviderIdField;
@@ -2055,7 +2055,7 @@ public partial class ContentProviderIdList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ServingPartiesInformation: OldNode
+public partial class ServingPartiesInformation: BaseNode
 {
 
     private byte[] contentProviderNameField;
@@ -2128,7 +2128,7 @@ public partial class ServingPartiesInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class EquipmentId: OldNode
+public partial class EquipmentId: BaseNode
 {
 
     private byte[] itemField;
@@ -2185,7 +2185,7 @@ public enum ItemChoiceType10
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyEquipment: OldNode
+public partial class ChargedPartyEquipment: BaseNode
 {
 
     private string equipmentIdTypeField;
@@ -2226,7 +2226,7 @@ public partial class ChargedPartyEquipment: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class LocationIdentifier: OldNode
+public partial class LocationIdentifier: BaseNode
 {
 
     private object itemField;
@@ -2299,7 +2299,7 @@ public enum ItemChoiceType9
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyLocation: OldNode
+public partial class ChargedPartyLocation: BaseNode
 {
 
     private string locationIdTypeField;
@@ -2340,7 +2340,7 @@ public partial class ChargedPartyLocation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyLocationList: OldNode
+public partial class ChargedPartyLocationList: BaseNode
 {
 
     private ChargedPartyLocation[] chargedPartyLocationField;
@@ -2365,7 +2365,7 @@ public partial class ChargedPartyLocationList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class HomeIdentifier: OldNode
+public partial class HomeIdentifier: BaseNode
 {
 
     private byte[] itemField;
@@ -2430,7 +2430,7 @@ public enum ItemChoiceType8
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyHomeId: OldNode
+public partial class ChargedPartyHomeId: BaseNode
 {
 
     private string homeIdTypeField;
@@ -2471,7 +2471,7 @@ public partial class ChargedPartyHomeId: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyHomeIdList: OldNode
+public partial class ChargedPartyHomeIdList: BaseNode
 {
 
     private ChargedPartyHomeId[] chargedPartyHomeIdField;
@@ -2496,7 +2496,7 @@ public partial class ChargedPartyHomeIdList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyIdentification: OldNode
+public partial class ChargedPartyIdentification: BaseNode
 {
 
     private object itemField;
@@ -2573,7 +2573,7 @@ public enum ItemChoiceType7
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyId: OldNode
+public partial class ChargedPartyId: BaseNode
 {
 
     private string chargedPartyIdTypeField;
@@ -2614,7 +2614,7 @@ public partial class ChargedPartyId: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyIdList: OldNode
+public partial class ChargedPartyIdList: BaseNode
 {
 
     private ChargedPartyId[] chargedPartyIdField;
@@ -2639,7 +2639,7 @@ public partial class ChargedPartyIdList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargedPartyInformation: OldNode
+public partial class ChargedPartyInformation: BaseNode
 {
 
     private ChargedPartyIdList chargedPartyIdListField;
@@ -2712,7 +2712,7 @@ public partial class ChargedPartyInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ContentTransactionBasicInfo: OldNode
+public partial class ContentTransactionBasicInfo: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -2833,7 +2833,7 @@ public partial class ContentTransactionBasicInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ContentTransaction: OldNode
+public partial class ContentTransaction: BaseNode
 {
 
     private ContentTransactionBasicInfo contentTransactionBasicInfoField;
@@ -2922,7 +2922,7 @@ public partial class ContentTransaction: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class QoSUsed: OldNode
+public partial class QoSUsed: BaseNode
 {
 
     private object itemField;
@@ -2959,7 +2959,7 @@ public partial class GSMQoSUsed : GSMQoSInformation
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GSMQoSInformation: OldNode
+public partial class GSMQoSInformation: BaseNode
 {
 
     private string delayField;
@@ -3068,7 +3068,7 @@ public partial class UMTSQoSUsed : UMTSQoSInformation
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class UMTSQoSInformation: OldNode
+public partial class UMTSQoSInformation: BaseNode
 {
 
     private string trafficClassField;
@@ -3262,7 +3262,7 @@ public partial class UMTSQoSRequested : UMTSQoSInformation
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class QoSRequested: OldNode
+public partial class QoSRequested: BaseNode
 {
 
     private object itemField;
@@ -3288,7 +3288,7 @@ public partial class QoSRequested: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsServiceUsage: OldNode
+public partial class GprsServiceUsage: BaseNode
 {
 
     private ChargingTimeStamp gprsUsageTimeStampField;
@@ -3377,7 +3377,7 @@ public partial class GprsServiceUsage: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsServiceUsageList: OldNode
+public partial class GprsServiceUsageList: BaseNode
 {
 
     private GprsServiceUsage[] gprsServiceUsageField;
@@ -3402,7 +3402,7 @@ public partial class GprsServiceUsageList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsServiceUsed: OldNode
+public partial class GprsServiceUsed: BaseNode
 {
 
     private GprsServiceUsageList gprsServiceUsageListField;
@@ -3459,7 +3459,7 @@ public partial class GprsServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class RecEntityCodeList: OldNode
+public partial class RecEntityCodeList: BaseNode
 {
 
     private string[] recEntityCodeField;
@@ -3484,7 +3484,7 @@ public partial class RecEntityCodeList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsNetworkLocation: OldNode
+public partial class GprsNetworkLocation: BaseNode
 {
 
     private RecEntityCodeList recEntityField;
@@ -3541,7 +3541,7 @@ public partial class GprsNetworkLocation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsLocationInformation: OldNode
+public partial class GprsLocationInformation: BaseNode
 {
 
     private GprsNetworkLocation gprsNetworkLocationField;
@@ -3598,7 +3598,7 @@ public partial class GprsLocationInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class HomeLocationInformation: OldNode
+public partial class HomeLocationInformation: BaseNode
 {
 
     private byte[] homeBidField;
@@ -3639,7 +3639,7 @@ public partial class HomeLocationInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GeographicalLocation: OldNode
+public partial class GeographicalLocation: BaseNode
 {
 
     private byte[] servingNetworkField;
@@ -3728,7 +3728,7 @@ public partial class GeographicalLocation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsChargeableSubscriber: OldNode
+public partial class GprsChargeableSubscriber: BaseNode
 {
 
     private ChargeableSubscriber chargeableSubscriberField;
@@ -3801,7 +3801,7 @@ public partial class GprsChargeableSubscriber: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChargeableSubscriber: OldNode
+public partial class ChargeableSubscriber: BaseNode
 {
 
     private object itemField;
@@ -3827,7 +3827,7 @@ public partial class ChargeableSubscriber: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MinChargeableSubscriber: OldNode
+public partial class MinChargeableSubscriber: BaseNode
 {
 
     private byte[] minField;
@@ -3868,7 +3868,7 @@ public partial class MinChargeableSubscriber: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class SimChargeableSubscriber: OldNode
+public partial class SimChargeableSubscriber: BaseNode
 {
 
     private byte[] imsiField;
@@ -3909,7 +3909,7 @@ public partial class SimChargeableSubscriber: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsBasicCallInformation: OldNode
+public partial class GprsBasicCallInformation: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -4110,7 +4110,7 @@ public partial class GprsBasicCallInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsDestination: OldNode
+public partial class GprsDestination: BaseNode
 {
 
     private byte[] accessPointNameNIField;
@@ -4167,7 +4167,7 @@ public partial class GprsDestination: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class RemotePdpAddressList: OldNode
+public partial class RemotePdpAddressList: BaseNode
 {
 
     private byte[][] packetDataProtocolAddressField;
@@ -4192,7 +4192,7 @@ public partial class RemotePdpAddressList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class GprsCall: OldNode
+public partial class GprsCall: BaseNode
 {
 
     private string typeOfControllingNodeField;
@@ -4329,7 +4329,7 @@ public partial class GprsCall: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class EquipmentInformation: OldNode
+public partial class EquipmentInformation: BaseNode
 {
 
     private string mobileStationClassMarkField;
@@ -4370,7 +4370,7 @@ public partial class EquipmentInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ImeiOrEsn: OldNode
+public partial class ImeiOrEsn: BaseNode
 {
 
     private byte[] itemField;
@@ -4427,7 +4427,7 @@ public enum ItemChoiceType3
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CamelServiceUsed: OldNode
+public partial class CamelServiceUsed: BaseNode
 {
 
     private string typeOfNumberField;
@@ -4628,7 +4628,7 @@ public partial class CamelServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CamelCallReference: OldNode
+public partial class CamelCallReference: BaseNode
 {
 
     private string typeOfNumberField;
@@ -4701,7 +4701,7 @@ public partial class CamelCallReference: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CamelModificationList: OldNode
+public partial class CamelModificationList: BaseNode
 {
 
     private string[] camelModificationField;
@@ -4726,7 +4726,7 @@ public partial class CamelModificationList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ThreeGcamelDestination: OldNode
+public partial class ThreeGcamelDestination: BaseNode
 {
 
     private object itemField;
@@ -4752,7 +4752,7 @@ public partial class ThreeGcamelDestination: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CamelDestination: OldNode
+public partial class CamelDestination: BaseNode
 {
 
     private string typeOfNumberField;
@@ -4809,7 +4809,7 @@ public partial class CamelDestination: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ValueAddedServiceUsedList: OldNode
+public partial class ValueAddedServiceUsedList: BaseNode
 {
 
     private ValueAddedServiceUsed[] valueAddedServiceUsedField;
@@ -4834,7 +4834,7 @@ public partial class ValueAddedServiceUsedList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ValueAddedServiceUsed: OldNode
+public partial class ValueAddedServiceUsed: BaseNode
 {
 
     private string vasCodeField;
@@ -4891,7 +4891,7 @@ public partial class ValueAddedServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ValueAddedService: OldNode
+public partial class ValueAddedService: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -5012,7 +5012,7 @@ public partial class ValueAddedService: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ScuVasChargeableSubscriber: OldNode
+public partial class ScuVasChargeableSubscriber: BaseNode
 {
 
     private object itemField;
@@ -5073,7 +5073,7 @@ public enum ItemChoiceType6
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ScuTimeStamps: OldNode
+public partial class ScuTimeStamps: BaseNode
 {
 
     private DepositTimeStamp depositTimeStampField;
@@ -5130,7 +5130,7 @@ public partial class ScuTimeStamps: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ScuChargeType: OldNode
+public partial class ScuChargeType: BaseNode
 {
 
     private string messageStatusField;
@@ -5219,7 +5219,7 @@ public partial class ScuChargeType: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NonChargedParty: OldNode
+public partial class NonChargedParty: BaseNode
 {
 
     private string typeOfNumberField;
@@ -5308,7 +5308,7 @@ public partial class NonChargedParty: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ScuBasicInformation: OldNode
+public partial class ScuBasicInformation: BaseNode
 {
 
     private ScuVasChargeableSubscriber chargeableSubscriberField;
@@ -5413,7 +5413,7 @@ public partial class ScuBasicInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ServiceCentreUsage: OldNode
+public partial class ServiceCentreUsage: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -5582,7 +5582,7 @@ public partial class ServiceCentreUsage: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class SupplServiceEvent: OldNode
+public partial class SupplServiceEvent: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -5735,7 +5735,7 @@ public partial class SupplServiceEvent: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class LocationInformation: OldNode
+public partial class LocationInformation: BaseNode
 {
 
     private NetworkLocation networkLocationField;
@@ -5792,7 +5792,7 @@ public partial class LocationInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NetworkLocation: OldNode
+public partial class NetworkLocation: BaseNode
 {
 
     private string recEntityCodeField;
@@ -5865,7 +5865,7 @@ public partial class NetworkLocation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class SupplServiceUsed: OldNode
+public partial class SupplServiceUsed: BaseNode
 {
 
     private byte[] supplServiceCodeField;
@@ -5986,7 +5986,7 @@ public partial class SupplServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ThirdPartyInformation: OldNode
+public partial class ThirdPartyInformation: BaseNode
 {
 
     private string typeOfNumberField;
@@ -6075,7 +6075,7 @@ public partial class ThirdPartyInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicServiceCodeList: OldNode
+public partial class BasicServiceCodeList: BaseNode
 {
 
     private byte[][] itemsField;
@@ -6133,7 +6133,7 @@ public enum ItemsChoiceType
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CallOriginator: OldNode
+public partial class CallOriginator: BaseNode
 {
 
     private string typeOfNumberField;
@@ -6222,7 +6222,7 @@ public partial class CallOriginator: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MtBasicCallInformation: OldNode
+public partial class MtBasicCallInformation: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -6391,7 +6391,7 @@ public partial class MtBasicCallInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MobileTerminatedCall: OldNode
+public partial class MobileTerminatedCall: BaseNode
 {
 
     private MtBasicCallInformation basicCallInformationField;
@@ -6544,7 +6544,7 @@ public partial class MobileTerminatedCall: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicServiceUsedList: OldNode
+public partial class BasicServiceUsedList: BaseNode
 {
 
     private BasicServiceUsed[] basicServiceUsedField;
@@ -6569,7 +6569,7 @@ public partial class BasicServiceUsedList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicServiceUsed: OldNode
+public partial class BasicServiceUsed: BaseNode
 {
 
     private BasicService basicServiceField;
@@ -6658,7 +6658,7 @@ public partial class BasicServiceUsed: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicService: OldNode
+public partial class BasicService: BaseNode
 {
 
     private BasicServiceCode serviceCodeField;
@@ -6763,7 +6763,7 @@ public partial class BasicService: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicServiceCode: OldNode
+public partial class BasicServiceCode: BaseNode
 {
 
     private byte[] itemField;
@@ -6820,7 +6820,7 @@ public enum ItemChoiceType4
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class HSCSDInformation: OldNode
+public partial class HSCSDInformation: BaseNode
 {
 
     private BasicHSCSDParameters basicHSCSDParametersField;
@@ -6861,7 +6861,7 @@ public partial class HSCSDInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BasicHSCSDParameters: OldNode
+public partial class BasicHSCSDParameters: BaseNode
 {
 
     private string fnurField;
@@ -6966,7 +6966,7 @@ public partial class BasicHSCSDParameters: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ChannelCodingsAcceptable: OldNode
+public partial class ChannelCodingsAcceptable: BaseNode
 {
 
     private string[] channelCodingField;
@@ -6991,7 +6991,7 @@ public partial class ChannelCodingsAcceptable: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class HSCSDParameterModificationList: OldNode
+public partial class HSCSDParameterModificationList: BaseNode
 {
 
     private HSCSDParameterModification[] hSCSDParameterModificationField;
@@ -7016,7 +7016,7 @@ public partial class HSCSDParameterModificationList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class HSCSDParameterModification: OldNode
+public partial class HSCSDParameterModification: BaseNode
 {
 
     private string aiurField;
@@ -7121,7 +7121,7 @@ public partial class HSCSDParameterModification: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class SupplServiceUsedList: OldNode
+public partial class SupplServiceUsedList: BaseNode
 {
 
     private SupplServiceUsed[] supplServiceUsedField;
@@ -7146,7 +7146,7 @@ public partial class SupplServiceUsedList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DualServiceCode: OldNode
+public partial class DualServiceCode: BaseNode
 {
 
     private byte[] itemField;
@@ -7203,7 +7203,7 @@ public enum ItemChoiceType5
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class Destination: OldNode
+public partial class Destination: BaseNode
 {
 
     private string typeOfNumberField;
@@ -7324,7 +7324,7 @@ public partial class Destination: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MoBasicCallInformation: OldNode
+public partial class MoBasicCallInformation: BaseNode
 {
 
     private byte[] fraudMonitorIndicatorField;
@@ -7493,7 +7493,7 @@ public partial class MoBasicCallInformation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MobileOriginatedCall: OldNode
+public partial class MobileOriginatedCall: BaseNode
 {
 
     private MoBasicCallInformation basicCallInformationField;
@@ -7646,7 +7646,7 @@ public partial class MobileOriginatedCall: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MessageDescriptionDefinition: OldNode
+public partial class MessageDescriptionDefinition: BaseNode
 {
 
     private string messageDescriptionCodeField;
@@ -7687,7 +7687,7 @@ public partial class MessageDescriptionDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class MessageDescriptionInfo: OldNode
+public partial class MessageDescriptionInfo: BaseNode
 {
 
     private MessageDescriptionDefinition[] messageDescriptionDefinitionField;
@@ -7712,7 +7712,7 @@ public partial class MessageDescriptionInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class VasDefinition: OldNode
+public partial class VasDefinition: BaseNode
 {
 
     private string vasCodeField;
@@ -7769,7 +7769,7 @@ public partial class VasDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class VasInfo: OldNode
+public partial class VasInfo: BaseNode
 {
 
     private VasDefinition[] vasDefinitionField;
@@ -7794,7 +7794,7 @@ public partial class VasInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class IacTable: OldNode
+public partial class IacTable: BaseNode
 {
 
     private byte[][] iacField;
@@ -7819,7 +7819,7 @@ public partial class IacTable: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CountryCodeTable: OldNode
+public partial class CountryCodeTable: BaseNode
 {
 
     private byte[][] countryCodeField;
@@ -7844,7 +7844,7 @@ public partial class CountryCodeTable: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CalledNumAnalysis: OldNode
+public partial class CalledNumAnalysis: BaseNode
 {
 
     private string calledNumAnalysisCodeField;
@@ -7901,7 +7901,7 @@ public partial class CalledNumAnalysis: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CalledNumAnalysisList: OldNode
+public partial class CalledNumAnalysisList: BaseNode
 {
 
     private CalledNumAnalysis[] calledNumAnalysisField;
@@ -7926,7 +7926,7 @@ public partial class CalledNumAnalysisList: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class RecEntityId: OldNode
+public partial class RecEntityId: BaseNode
 {
 
     private object itemField;
@@ -7987,7 +7987,7 @@ public enum ItemChoiceType2
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class RecEntityDefinition: OldNode
+public partial class RecEntityDefinition: BaseNode
 {
 
     private string recEntityCodeField;
@@ -8044,7 +8044,7 @@ public partial class RecEntityDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class RecEntityTable: OldNode
+public partial class RecEntityTable: BaseNode
 {
 
     private RecEntityDefinition[] recEntityDefinitionField;
@@ -8069,7 +8069,7 @@ public partial class RecEntityTable: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class UtcTimeOffsetDefinition: OldNode
+public partial class UtcTimeOffsetDefinition: BaseNode
 {
 
     private string utcTimeOffsetCodeField;
@@ -8110,7 +8110,7 @@ public partial class UtcTimeOffsetDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class UtcTimeOffsetInfo: OldNode
+public partial class UtcTimeOffsetInfo: BaseNode
 {
 
     private UtcTimeOffsetDefinition[] utcTimeOffsetDefinitionField;
@@ -8135,7 +8135,7 @@ public partial class UtcTimeOffsetInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class NetworkInfo: OldNode
+public partial class NetworkInfo: BaseNode
 {
 
     private UtcTimeOffsetInfo utcTimeOffsetInfoField;
@@ -8208,7 +8208,7 @@ public partial class NetworkInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class ExchangeRateDefinition: OldNode
+public partial class ExchangeRateDefinition: BaseNode
 {
 
     private string exchangeRateCodeField;
@@ -8265,7 +8265,7 @@ public partial class ExchangeRateDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class CurrencyConversion: OldNode
+public partial class CurrencyConversion: BaseNode
 {
 
     private ExchangeRateDefinition[] exchangeRateDefinitionField;
@@ -8290,7 +8290,7 @@ public partial class CurrencyConversion: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DiscountApplied: OldNode
+public partial class DiscountApplied: BaseNode
 {
 
     private string itemField;
@@ -8347,7 +8347,7 @@ public enum ItemChoiceType
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class DiscountDefinition: OldNode
+public partial class DiscountDefinition: BaseNode
 {
 
     private string discountCodeField;
@@ -8388,7 +8388,7 @@ public partial class DiscountDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class Discounting: OldNode
+public partial class Discounting: BaseNode
 {
 
     private DiscountDefinition[] discountDefinitionField;
@@ -8413,7 +8413,7 @@ public partial class Discounting: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TaxRateDefinition: OldNode
+public partial class TaxRateDefinition: BaseNode
 {
 
     private string taxCodeField;
@@ -8470,7 +8470,7 @@ public partial class TaxRateDefinition: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class Taxation: OldNode
+public partial class Taxation: BaseNode
 {
 
     private TaxRateDefinition[] taxRateDefinitionField;
@@ -8495,7 +8495,7 @@ public partial class Taxation: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class AccountingInfo: OldNode
+public partial class AccountingInfo: BaseNode
 {
 
     private Taxation taxationField;
@@ -8600,7 +8600,7 @@ public partial class AccountingInfo: OldNode
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class BatchControlInfo: OldNode
+public partial class BatchControlInfo: BaseNode
 {
 
     private byte[] senderField;
@@ -8803,7 +8803,7 @@ public partial class FileAvailableTimeStamp : DateTimeLong
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-public partial class TransferBatch: OldNode
+public partial class TransferBatch: BaseNode
 {
 
     private BatchControlInfo batchControlInfoField;

@@ -23,9 +23,9 @@ namespace Tap0309
                     var transferBatch = (TransferBatch)datainterchange.Item;
                     var props2 = transferBatch.GetAllProperties();
                     var val = transferBatch.GetProperty();
-                    if(val is OldNode)
+                    if(val is BaseNode)
                     {
-                        var newVal = (OldNode)val;
+                        var newVal = (BaseNode)val;
                         var s = newVal.GetProperty();
                     }
                 }
