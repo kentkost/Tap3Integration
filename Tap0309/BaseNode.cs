@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Reflection.Metadata.Ecma335;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Tap0309;
 
@@ -15,6 +13,8 @@ public abstract class BaseNode
     //private List<BaseNode> children = new List<BaseNode>();
     //private List<string> fields = new List<string>();
     //private BaseNode parent = null;
+
+    public Type PropertyType { get; set; }
 
     public BaseNode()
     {
@@ -56,9 +56,20 @@ public abstract class BaseNode
             {
                 Console.WriteLine("Is child");
                 var child = property.GetValue(this, null) as BaseNode;
+                var type1 = property.DeclaringType;
+                var type2 = property.GetType();
+                var type3 = property.MemberType;
+                var type4 = property.PropertyType; // use this to almost be able to create a new one. //Use Grammar to see which types are available at children and which are uninitialized.
+                var type5 = property.ReflectedType;
+
                 if (child != null)
                 {
                     children.Add(child);
+                }
+                else
+                {
+                    var newChild = Activator.CreateInstance(type4);
+                    
                 }
             }
         }
