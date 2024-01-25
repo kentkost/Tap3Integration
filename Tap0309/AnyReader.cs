@@ -26,10 +26,6 @@ public class AnyReader
     public string DataString { get => dataString; set => dataString = value; }
     public Node Root { get => root; set => root = value; }
 
-    // I really want to test OldNode again. Since an abstract base node seems to be the way.
-    // BUt I can experiment with this once The regular node works.
-    //public OldNode Root { get => root; set => root = value; }
-
     public AnyReader()
     {
 

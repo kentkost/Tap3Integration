@@ -1,1 +1,11 @@
--- Node is supposed to be akin to a model på not really.
+
+Compute translated value.
+  Not as easy as it sounds due to having to find type first.
+  I guess this is where grammar structure comes in. Not all types are created equal.
+  HowTO:
+    * Add BaseType to Node.cs
+    * In AnyReader.cs whilst reading Data into a structure also find the basetype.
+    * Create methods for converting.
+    * To Node.cs set TranslatedValue
+
+Show translated value
