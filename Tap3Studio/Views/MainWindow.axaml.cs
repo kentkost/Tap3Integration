@@ -1,16 +1,16 @@
 using Avalonia.Controls;
 using Tap3Studio.ViewModels;
 
-namespace Tap3Studio.Views
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            MainWindowViewModel vm = (MainWindowViewModel)this.DataContext;
+namespace Tap3Studio.Views;
 
-            //dataTree.ItemsSource = vm.ObjectNode;
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        if(this.DataContext is MainWindowViewModel)
+        {
+            MainWindowViewModel vm = (MainWindowViewModel)this.DataContext;
         }
     }
 }

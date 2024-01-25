@@ -23,30 +23,42 @@
 
     <Grid>
         <TabControl>
-
             <TabItem Header="BaseObject">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding Greeting}" />
+                <!--
+                    Normally there is a scrollviewer inside a treeview. But if it inside a stackpanel then it wont work.
+                    So we wrap the stackpanel in a scrollviewer to fix
+                -->
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding Greeting}" />
 
-                    <TreeView x:Name="dataTree" ItemsSource="{Binding ObjectNode}">
-                        <TreeView.ItemTemplate>
-                            <TreeDataTemplate x:DataType="model:BaseNode" ItemsSource="{Binding Children}">
-                                <TextBlock Text="{Binding TypeName}" />
-                            </TreeDataTemplate>
-                        </TreeView.ItemTemplate>
-                    </TreeView>
+                        <TreeView x:Name="dataTree" ItemsSource="{Binding ObjectNode}">
+                            <TreeView.ItemTemplate>
+                                <TreeDataTemplate x:DataType="model:Node" ItemsSource="{Binding Children}">
+                                    <Border
+                                        Padding="15,3"
+                                        HorizontalAlignment="Left"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        CornerRadius="5">
+                                        <TextBlock Text="{Binding DiplayValue}" />
+                                    </Border>
+                                </TreeDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
 
-                    <Label Content="{Binding FuckOff}" />
-                </StackPanel>
+                        <Label Content="{Binding FuckOff}" />
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
 
-            <TabItem Header="Object">
+            <!--<TabItem Header="Object">
 
                 <StackPanel Orientation="Vertical">
                     <Label Content="{Binding Greeting}" />
 
-                    <TreeView x:Name="dataTree" ItemsSource="{Binding ObjectNode}">
+                    <TreeView x:Name="otherDataTree" ItemsSource="{Binding ObjectNode}">
                         <TreeView.ItemTemplate>
                             <TreeDataTemplate x:DataType="model:Node" ItemsSource="{Binding Children}">
                                 <TextBlock Text="{Binding TypeName}" />
@@ -56,7 +68,7 @@
 
                     <Label Content="{Binding FuckOff}" />
                 </StackPanel>
-            </TabItem>
+            </TabItem>-->
 
         </TabControl>
     </Grid>

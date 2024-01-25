@@ -1,18 +1,10 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Tap0309;
 
 public abstract class BaseNode
 {
-    //public BaseNode Parent { get => parent; set => parent = value; }
-    //public List<BaseNode> Children { get => children; set => children = value; }
-    //public List<string> Fields { get => fields; set => fields = value; }
-    //public string Name { get => name; set => name = value; }
-
-    //private string name;
-    //private List<BaseNode> children = new List<BaseNode>();
-    //private List<string> fields = new List<string>();
-    //private BaseNode parent = null;
 
     public Type PropertyType { get; set; }
 
