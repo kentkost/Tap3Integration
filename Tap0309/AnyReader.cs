@@ -6,7 +6,7 @@ namespace Tap0309;
 
 public class AnyReader
 {
-    private static string inFile = @"E:/repos/Tap3Integration/SampleData/tdcsample.xer";
+    private static readonly string inFile = @"E:/repos/Tap3Integration/SampleData/tdcsample.xer";
     //private static string grammerFile = @"E:/repos/Tap3Integration/SampleData/some.xsd";
     string grammarFile = "E:/repos/Tap3Integration/tmp/TAP-0309(all options).xsd";
     private Node root;
@@ -37,15 +37,17 @@ public class AnyReader
 
     public void PrepareStructures()
     {
+        // Read XML file created by Tap3Magic
         dataString = File.ReadAllText(inFile);
         dataDocument = new XmlDocument();
         dataDocument.Load(inFile);
-        CreateLookUpNodes();
-        //Create Nodes
-        CreateNodes();
+        // Read the grammar file to create a grammar rule set to know which children a node kan have
+        ReadGrammarAndCreateStructure();
+        // Read the actual data and read into Node/BaseNode structure such that it can be displayed in a treeview
+        ReadDataAndCreateStructure();
     }
 
-    private void CreateNodes()
+    private void ReadDataAndCreateStructure()
     {
         FileStream fs = new FileStream(inFile, FileMode.Open, FileAccess.Read);
         var content = XElement.Load(fs);
@@ -93,7 +95,7 @@ public class AnyReader
         return node;
     }
 
-    private void CreateLookUpNodes()
+    private void ReadGrammarAndCreateStructure()
     {
         // Get all Complextypes and simpletypes first.
         var document = new XmlDocument();

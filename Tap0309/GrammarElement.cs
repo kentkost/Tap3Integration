@@ -2,9 +2,16 @@
 
 namespace Tap0309;
 
+
+
+
 public enum GrammarType {SIMPLE, COMPLEX, SEQUENCE, CHOICE, UNDEFINED = 999}
 public enum ClassType { APPLICATION, UNIVERSAL, PRIVATE, CONTEXT, UNDEFINED = 999 }
 public enum TagType { EXPLICIT, IMPLICIT, UNDEFINED = 999 }
+
+/// <summary>
+/// Honestly. I've forgotten how to use this. But it probably comes in handy
+/// </summary>
 public class GrammarElement
 {
     private GrammarType type = GrammarType.SIMPLE;
