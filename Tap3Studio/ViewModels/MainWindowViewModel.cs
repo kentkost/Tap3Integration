@@ -10,7 +10,7 @@ public partial class MainWindowViewModel : ObservableObject
     private ObservableCollection<Node> tap3Root = new ObservableCollection<Node>();
 
     [ObservableProperty]
-    private Node selectedNode;
+    private Node? selectedNode;
 
     [ObservableProperty]
     private string greeting;

@@ -67,7 +67,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Raw HEX:" />
-                                <Label Content="{Binding SelectedNode.RawHexValue}" />
+                                <Label Content="{Binding SelectedNode.RawValue}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Translated:" />

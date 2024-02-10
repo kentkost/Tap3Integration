@@ -69,6 +69,7 @@ public class AnyReader
         return "FindBaseType(): not implemented";
     }
 
+
     private void TraverseElement(Node parent, XElement element, int childNumber)
     {
         //parent.Children.Add(ReadElement(parent, element, childNumber));
@@ -78,7 +79,7 @@ public class AnyReader
             //resolve parents type here?
             parent.IsLeaf = true;
             ResolveType(ref parent);
-            parent.ConvertedValue = ConvertValue(ref parent);
+            parent.StringRepresentationValue = ConvertValue(ref parent);
         }
 
         // Recursively traverse all child elements
@@ -105,14 +106,25 @@ public class AnyReader
     }
 
     // This can also be done better
-    private string ConvertValue(ref Node node) => node.BaseType.ToLower() switch
+    //  * BCDString xsd:hexbinary and simpletype = "BCDString"
+    //  * ASCIIString, Numberstring, etc.xsd:hexbinary
+    //  * Integer xsd:integer
+    private string ConvertValue(ref Node node)
     {
-        "bcdstring" => Converters.BCDConverter(node.RawHexValue),
-        "asciistring" => Converters.ASCIIConverter(node.RawHexValue),
-        "numberstring" => Converters.ASCIIConverter(node.RawHexValue),
-        //_ => throw new MissingConverterException(node.BaseType, node.BaseXsdType, node.RawHexValue)
-        _ => Converters.BCDConverter(node.RawHexValue),
-    };
+        if (node.BaseType.ToLower().Equals("bcdstring"))
+        {
+            return Converters.BCDConverter(node.RawValue);
+        }
+        else if (node.BaseXsdType.ToLower().Equals("xsd:hexbinary"))
+        {
+            return Converters.ASCIIConverter(node.RawValue);
+        }
+        else if (node.BaseXsdType.ToLower().Equals("xsd:integer"))
+        {
+            return node.RawValue;
+        }
+        throw new MissingConverterException(node.BaseType, node.BaseXsdType, node.RawValue);
+    }
 
     private Node ReadElement(Node parent, XElement element, int childNumber)
     {

@@ -6,7 +6,12 @@ public static class Converters
 {
     public static string BCDConverter(string input)
     {
-        var res = CleanString(input);
+        var res = CleanString(input).ToUpper();
+        // Remove padding
+        while(res.Last() == 'F')
+        {
+            res = res[..^1];
+        }
         return res;
     }
       
